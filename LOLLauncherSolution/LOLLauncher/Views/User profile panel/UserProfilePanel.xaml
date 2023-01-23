@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="LOLLauncher.Views.User_profile_panel.UserProfilePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LOLLauncher.Views.User_profile_panel"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="279">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="100"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<Frame Grid.Column="0" Background="LightPink"/>
+
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="2*"/>
+				<RowDefinition Height="1*"/>
+				<RowDefinition Height="2*"/>
+			</Grid.RowDefinitions>
+
+			<Frame Grid.Row="0" VerticalAlignment="Top" Padding="0 0 4 0">
+				<Frame.Content>
+					<DockPanel LastChildFill="False">
+						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="x" FontSize="20" FontWeight="Bold"
+												Background="#010A14" Foreground="#A09B8C" Click="Exit_Click_Temporary"/>
+						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="☼" FontSize="20" FontWeight="Bold"
+												Background="#010A14" Foreground="#A09B8C"/>
+						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="_" FontSize="20" FontWeight="Bold"
+												Background="#010A14" Foreground="#A09B8C"/>
+						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="?" FontSize="20" FontWeight="Bold"
+												Background="#010A14" Foreground="#A09B8C"/>
+					</DockPanel>
+				</Frame.Content>
+			</Frame>
+
+			<TextBlock Grid.Row="1" VerticalAlignment="Center" Foreground="#F0E6C6" Text="NickName" FontSize="16" FontWeight="Bold"/>
+
+			<Frame Grid.Row="2" VerticalAlignment="Top" Padding="0 0 4 0">
+				<Frame.Content>
+					<DockPanel LastChildFill="False">
+						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#66F8A0" Text="○" FontSize="16"/>
+						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#09A646" Text="Online" FontSize="16" Padding="4 0"/>
+						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="♠" FontSize="20" FontWeight="Bold"
+												Background="#010A14" Foreground="#A09B8C"/>
+					</DockPanel>
+				</Frame.Content>
+			</Frame>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<Window x:Class="LOLLauncher.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LOLLauncher.Views"
+		xmlns:topPanel="clr-namespace:LOLLauncher.Views.Top_panel"
+		xmlns:userProfilePanel="clr-namespace:LOLLauncher.Views.User_profile_panel"
+		xmlns:biggestArea="clr-namespace:LOLLauncher.Views.The_biggest_area"
+		xmlns:friendsListPanel="clr-namespace:LOLLauncher.Views.Friends_list_panel"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="1600" Height="900" ResizeMode="NoResize" WindowStyle="None">
+
+	<Frame>
+		<Frame.BorderThickness>
+			<Thickness Top="0" Left="1" Right="1" Bottom="1"/>
+		</Frame.BorderThickness>
+		<Frame.BorderBrush>
+			<SolidColorBrush Color="#1E282D"/>
+		</Frame.BorderBrush>
+		<Frame.Content>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="2"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<Frame Grid.Row="0" Background="#785A28"/>
+				
+				<!-- Main Area (main grid) -->
+				<Grid Grid.Row="1" Background="#010A13">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="100"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="33*"/>
+						<ColumnDefinition Width="7*"/>
+					</Grid.ColumnDefinitions>
+					
+					<!-- Top panel, except profile -->
+					<topPanel:TopPanel Grid.Row="0" Grid.Column="0"/>
+
+					<!-- Uset profile panel -->
+					<userProfilePanel:UserProfilePanel Grid.Row="0" Grid.Column="1"/>
+
+					<!-- Splitting line throughout the whole main grid -->
+					<Frame Grid.Row="1" Grid.ColumnSpan="2" Background="#3C4040"/>
+
+					<!-- The biggest area -->
+					<biggestArea:TheBiggestArea Grid.Row="2" Grid.Column="0"/>
+
+					<!-- Friends list etc. -->
+					<friendsListPanel:FriendsListPanel Grid.Row="2" Grid.Column="1"/>
+				</Grid>
+			</Grid>
+		</Frame.Content>
+	</Frame>
+    
+</Window>

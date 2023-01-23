@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="LOLLauncher.Views.The_biggest_area.TheBiggestArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LOLLauncher.Views.The_biggest_area"
+             mc:Ignorable="d" 
+             d:DesignHeight="796" d:DesignWidth="1319">
+	
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+        
+		<!-- Heading panel -->
+		<Grid Grid.Row="0" Margin="44 0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="32"/>
+				<RowDefinition Height="1"/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<Frame Grid.Row="1" Grid.Column="0">
+				<Frame.Background>
+					<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+						<GradientStop Color="#00000000" Offset="0"/>
+						<GradientStop Color="#ffCBBD90" Offset="0.5"/>
+						<GradientStop Color="#00000000" Offset="1"/>
+					</LinearGradientBrush>
+				</Frame.Background>
+			</Frame>
+			
+			<TextBlock Grid.Row="0" Grid.Column="0" Foreground="#F0E6D2"
+					   Text="ОБЗОР" FontSize="16" FontWeight="Bold" Margin="20 0" VerticalAlignment="Center" Cursor="Hand"/>
+
+			<TextBlock Grid.Row="0" Grid.Column="1" Foreground="#C6B78C"
+					   Text="ОБНОВЛЕНИЕ" FontSize="16" FontWeight="Bold" Margin="20 0" VerticalAlignment="Center" Cursor="Hand"/>
+		</Grid>
+		
+		<!-- Content area -->
+		<Grid Grid.Row="1">
+			<!-- switchable visibility of children??? -->
+			
+			<!-- Overview content -->
+			<Frame Visibility="Visible" Margin="44 0">
+				<Frame.Content>
+					<!-- Weekly free champions button -->
+					<Frame HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="2" Width="281" Height="40" Background="#1E2328" Cursor="Hand">
+						<Frame.BorderBrush>
+							<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+								<GradientStop Color="#C8A96C" Offset="0"/>
+								<GradientStop Color="#795C29" Offset="1"/>
+							</LinearGradientBrush>
+						</Frame.BorderBrush>
+						<Frame.Content>
+							<TextBlock Foreground="#CDBE91" Text="Список бесплатных чемпионов" FontSize="16"
+									   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Frame.Content>
+					</Frame>
+				</Frame.Content>
+			</Frame>
+			
+		</Grid>
+    </Grid>
+</UserControl>
