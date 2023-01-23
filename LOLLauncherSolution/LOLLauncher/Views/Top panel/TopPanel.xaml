@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LOLLauncher.Views.Top_panel"
+             xmlns:views="clr-namespace:LOLLauncher.Views.Top_panel"
+             xmlns:vms="clr-namespace:LOLLauncher.ViewModels.Top_panel"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1319">
 
@@ -13,53 +14,56 @@
 			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
 
-		<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
-			<Frame Padding="30 0">
-				<Frame.Content>
-					<!-- Play button -->
-					<Frame Width="205" Height="50" Background="LightCyan" Cursor="Hand"/>
-				</Frame.Content>
-			</Frame>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Frame Padding="30 0">
+                <Frame.Content>
+                    <!-- Play button -->
+                    <Frame Width="205" Height="50" Background="LightCyan" Cursor="Hand"/>
+                </Frame.Content>
+            </Frame>
 
-			<!-- Main buttons -->
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="Auto"/>
-				</Grid.ColumnDefinitions>
+            <!-- Main buttons -->
+            <Grid>
+                <Grid.DataContext>
+                    <vms:MainButtonsVM />
+                </Grid.DataContext>
+                <Grid.Resources>
+                    <ResourceDictionary Source="MainButtonsResources.xaml" />
+                </Grid.Resources>
 
-				<!-- Gradient on the chosen button -->
-				<Frame Grid.Column="0">
-					<Frame.Background>
-						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-							<GradientStop Color="#00000000" Offset="0"/>
-							<GradientStop Color="#ff465456" Offset="1.5"/>
-						</LinearGradientBrush>
-					</Frame.Background>
-				</Frame>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-				<Frame Grid.Column="0" Padding="20 0" Cursor="Hand">
-					<Frame.Content>
-						<TextBlock VerticalAlignment="Center" Foreground="#F0E6D2" Text="ГЛАВНАЯ" FontSize="16" FontWeight="Bold"/>
-					</Frame.Content>
-				</Frame>
+                <Frame Grid.Column="0" Style="{StaticResource MainButtonFrameStyle}"
+                       views:TopPanelButtonsHelper.IsSelected="{Binding IsHomeButtonChosen}">
+                    <Frame.Content>
+                        <TextBlock Text="ГЛАВНАЯ" Style="{StaticResource MainButtonTextBlockStyle}"
+                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsHomeButtonChosen}"/>
+                    </Frame.Content>
+                </Frame>
 
-				<Frame Grid.Column="1" Padding="20 0" Cursor="Hand">
-					<Frame.Content>
-						<TextBlock VerticalAlignment="Center" Foreground="#CDBE91" Text="TFT" FontSize="16" FontWeight="Bold"/>
-					</Frame.Content>
-				</Frame>
+                <Frame Grid.Column="1" Style="{StaticResource MainButtonFrameStyle}"
+                       views:TopPanelButtonsHelper.IsSelected="{Binding IsTFTButtonChosen}">
+                    <Frame.Content>
+                        <TextBlock Text="TFT" Style="{StaticResource MainButtonTextBlockStyle}"
+                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsTFTButtonChosen}"/>
+                    </Frame.Content>
+                </Frame>
 
-				<Frame Grid.Column="2" Padding="20 0" Cursor="Hand">
-					<Frame.Content>
-						<TextBlock VerticalAlignment="Center" Foreground="#CDBE91" Text="CLASH" FontSize="16" FontWeight="Bold"/>
-					</Frame.Content>
-				</Frame>
-			</Grid>
-		</StackPanel>
+                <Frame Grid.Column="2" Style="{StaticResource MainButtonFrameStyle}"
+                       views:TopPanelButtonsHelper.IsSelected="{Binding IsClashButtonChosen}">
+                    <Frame.Content>
+                        <TextBlock Text="CLASH" Style="{StaticResource MainButtonTextBlockStyle}"
+                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsClashButtonChosen}"/>
+                    </Frame.Content>
+                </Frame>
+            </Grid>
+        </StackPanel>
 
-		<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
 			<!-- Splitter -->
 			<Frame Width="1">
 				<Frame.Background>
