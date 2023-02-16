@@ -5,65 +5,69 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:LOLLauncher.Views.Top_panel"
              xmlns:vms="clr-namespace:LOLLauncher.ViewModels.Top_panel"
+			 xmlns:converters="clr-namespace:LOLLauncher.Converters"
+			 xmlns:commands="clr-namespace:LOLLauncher.Commands"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1319">
 
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="TopButtonsResources.xaml"/>
+				<ResourceDictionary>
+					<converters:TopButtonChosenToBoolConverter x:Key="TopButtonChosenToBoolConverter"/>
+				</ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
 	<Grid>
+		<Grid.DataContext>
+			<vms:TopButtonsVM />
+		</Grid.DataContext>
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="8*"/>
 			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Frame Padding="30 0">
-                <Frame.Content>
-                    <!-- Play button -->
-                    <Frame Width="205" Height="50" Background="LightCyan" Cursor="Hand"/>
-                </Frame.Content>
-            </Frame>
+		<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+			<Frame Padding="30 0">
+				<Frame.Content>
+					<!-- Play button -->
+					<Frame Width="205" Height="50" Background="LightCyan" Cursor="Hand"/>
+				</Frame.Content>
+			</Frame>
 
-            <!-- Main buttons -->
-            <Grid>
-                <Grid.DataContext>
-                    <vms:MainButtonsVM />
-                </Grid.DataContext>
-                <Grid.Resources>
-                    <ResourceDictionary Source="MainButtonsResources.xaml" />
-                </Grid.Resources>
+			<!-- Main buttons -->
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+				<Button Grid.Column="0" Content="ГЛАВНАЯ" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Home"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Home}"/>
 
-                <Frame Grid.Column="0" Style="{StaticResource MainButtonFrameStyle}"
-                       views:TopPanelButtonsHelper.IsSelected="{Binding IsHomeButtonChosen}">
-                    <Frame.Content>
-                        <TextBlock Text="ГЛАВНАЯ" Style="{StaticResource MainButtonTextBlockStyle}"
-                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsHomeButtonChosen}"/>
-                    </Frame.Content>
-                </Frame>
+				<Button Grid.Column="1" Content="TFT" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="TFT"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=TFT}"/>
 
-                <Frame Grid.Column="1" Style="{StaticResource MainButtonFrameStyle}"
-                       views:TopPanelButtonsHelper.IsSelected="{Binding IsTFTButtonChosen}">
-                    <Frame.Content>
-                        <TextBlock Text="TFT" Style="{StaticResource MainButtonTextBlockStyle}"
-                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsTFTButtonChosen}"/>
-                    </Frame.Content>
-                </Frame>
+				<Button Grid.Column="2" Content="CLASH" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Clash"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Clash}"/>
+			</Grid>
+		</StackPanel>
 
-                <Frame Grid.Column="2" Style="{StaticResource MainButtonFrameStyle}"
-                       views:TopPanelButtonsHelper.IsSelected="{Binding IsClashButtonChosen}">
-                    <Frame.Content>
-                        <TextBlock Text="CLASH" Style="{StaticResource MainButtonTextBlockStyle}"
-                                   views:TopPanelButtonsHelper.IsSelected="{Binding IsClashButtonChosen}"/>
-                    </Frame.Content>
-                </Frame>
-            </Grid>
-        </StackPanel>
-
-        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
+		<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
 			<!-- Splitter -->
 			<Frame Width="1">
 				<Frame.Background>
@@ -76,33 +80,37 @@
 			</Frame>
 
 			<!-- Little buttons -->
-			<Frame Width="36" Height="36" Margin="30 0 0 0" Cursor="Hand">
-				<Frame.Content>
-					<TextBlock Text="S" Foreground="#CDBE91" FontSize="24" FontWeight="Bold"
-											   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-				</Frame.Content>
-			</Frame>
+			<Grid FlowDirection="LeftToRight">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
 
-			<Frame Width="36" Height="36" Margin="30 0 0 0" Cursor="Hand">
-				<Frame.Content>
-					<TextBlock Text="I" Foreground="#CDBE91" FontSize="24" FontWeight="Bold"
-											   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-				</Frame.Content>
-			</Frame>
-
-			<Frame Width="36" Height="36" Margin="30 0 0 0" Cursor="Hand">
-				<Frame.Content>
-					<TextBlock Text="C" Foreground="#CDBE91" FontSize="24" FontWeight="Bold"
-											   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-				</Frame.Content>
-			</Frame>
-
-			<Frame Width="36" Height="36" Margin="30 0 0 0" Cursor="Hand">
-				<Frame.Content>
-					<TextBlock Text="P" Foreground="#CDBE91" FontSize="24" FontWeight="Bold"
-											   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-				</Frame.Content>
-			</Frame>
+				<Button Grid.Column="0" Content="P" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Profile"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Profile}"/>
+				<Button Grid.Column="1" Content="C" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Collection"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Collection}"/>
+				
+				<Button Grid.Column="2" Content="I" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Inventory"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Inventory}"/>
+				
+				<Button Grid.Column="3" Content="S" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Shop"
+						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource TopButtonChosenToBoolConverter},
+																		ConverterParameter=Shop}"/>
+			</Grid>
 		</StackPanel>
 
 		<!-- Balance section -->

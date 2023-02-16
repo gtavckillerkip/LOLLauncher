@@ -9,7 +9,9 @@
 		xmlns:biggestArea="clr-namespace:LOLLauncher.Views.The_biggest_area"
 		xmlns:friendsListPanel="clr-namespace:LOLLauncher.Views.Friends_list_panel"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1600" Height="900" ResizeMode="NoResize" WindowStyle="None">
+		Title="MainWindow"
+		Width="1600" Height="900" ResizeMode="NoResize" WindowStyle="None"
+		WindowStartupLocation="CenterScreen">
 
 	<Frame>
 		<Frame.BorderThickness>

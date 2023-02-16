@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LOLLauncher.ViewModels.Top_panel;
+using System.Windows;
 
 namespace LOLLauncher.Views.Top_panel
 {
@@ -7,6 +8,9 @@ namespace LOLLauncher.Views.Top_panel
     /// </summary>
     public static class TopPanelButtonsHelper
     {
+        /// <summary>
+        /// Выбрана ли кнопка.
+        /// </summary>
         public static DependencyProperty IsSelectedProperty = DependencyProperty.RegisterAttached(
             "IsSelected",
             typeof(bool),
@@ -17,5 +21,5 @@ namespace LOLLauncher.Views.Top_panel
 
         public static void SetIsSelected(DependencyObject dependency, bool value) =>
             dependency.SetValue(IsSelectedProperty, value);
-    }
+	}
 }
