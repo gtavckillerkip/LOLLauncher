@@ -1,5 +1,6 @@
 ﻿using LOLLauncher.ViewModels.Top_panel;
 using LOLLauncher.Views.The_biggest_area.Contents;
+using LOLLauncher.Views.The_biggest_area.Contents.Home_content;
 using System;
 using System.Globalization;
 using System.Windows.Data;
@@ -17,7 +18,7 @@ namespace LOLLauncher.Converters
 				TopButtonsVM.MainButtons.TFT =>			TFTContent.GetInstance(),
 				TopButtonsVM.MainButtons.Clash =>		ClashContent.GetInstance(),
 				TopButtonsVM.MainButtons.Profile =>		ProfileContent.GetInstance(),
-				TopButtonsVM.MainButtons.Collection => CollectionContent.GetInstance(),
+				TopButtonsVM.MainButtons.Collection => 	CollectionContent.GetInstance(),
 				TopButtonsVM.MainButtons.Inventory =>	InventoryContent.GetInstance(),
 				TopButtonsVM.MainButtons.Shop =>		ShopContent.GetInstance(),
 				_ => new object(),

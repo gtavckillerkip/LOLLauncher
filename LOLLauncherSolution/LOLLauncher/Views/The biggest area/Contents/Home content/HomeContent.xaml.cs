@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace LOLLauncher.Views.The_biggest_area.Contents
+namespace LOLLauncher.Views.The_biggest_area.Contents.Home_content
 {
     /// <summary>
     /// Логика взаимодействия для HomeContent.xaml

@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace LOLLauncher.Commands
 {
+	/// <summary>
+	/// Команда, обрабатывающая нажатие на кнопку верхней панели.
+	/// </summary>
 	public class TopButtonClickCommand : ICommand
 	{
 		/// <summary>

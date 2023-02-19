@@ -4,10 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LOLLauncher.Views.User_profile_panel"
+			 xmlns:syscommands="clr-namespace:LOLLauncher.Commands.System"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="279">
 
 	<Grid>
+		<Grid.Resources>
+			<ResourceDictionary>
+				<ResourceDictionary.MergedDictionaries>
+					<ResourceDictionary Source="SystemButtonsResources.xaml"/>
+					<ResourceDictionary>
+						<syscommands:ExitCommand x:Key="ExitCommand"/>
+						<syscommands:SettingsCommand x:Key="SettingsCommand"/>
+						<syscommands:MinimizeCommand x:Key="MinimizeCommand"/>
+						<syscommands:SupportCommand x:Key="SupportCommand"/>
+						<syscommands:NotificationsCommand x:Key="NotificationsCommand"/>
+					</ResourceDictionary>
+				</ResourceDictionary.MergedDictionaries>
+			</ResourceDictionary>
+		</Grid.Resources>
+		
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="100"/>
 			<ColumnDefinition/>
@@ -25,14 +41,22 @@
 			<Frame Grid.Row="0" VerticalAlignment="Top" Padding="0 0 4 0">
 				<Frame.Content>
 					<DockPanel LastChildFill="False">
-						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="x" FontSize="20" FontWeight="Bold"
-												Background="#010A14" Foreground="#A09B8C" Click="Exit_Click_Temporary"/>
-						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="☼" FontSize="20" FontWeight="Bold"
-												Background="#010A14" Foreground="#A09B8C"/>
-						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="_" FontSize="20" FontWeight="Bold"
-												Background="#010A14" Foreground="#A09B8C"/>
-						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="?" FontSize="20" FontWeight="Bold"
-												Background="#010A14" Foreground="#A09B8C"/>
+						<!-- Exit -->
+						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
+								Content="x"
+								Command="{StaticResource ExitCommand}"/>
+						<!-- Settings -->
+						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
+								Content="☼"
+								Command="{StaticResource SettingsCommand}"/>
+						<!-- Minimize -->
+						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
+								Content="_"
+								Command="{StaticResource MinimizeCommand}"/>
+						<!-- Support -->
+						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
+								Content="?"
+								Command="{StaticResource SupportCommand}"/>
 					</DockPanel>
 				</Frame.Content>
 			</Frame>
@@ -44,8 +68,10 @@
 					<DockPanel LastChildFill="False">
 						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#66F8A0" Text="○" FontSize="16"/>
 						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#09A646" Text="Online" FontSize="16" Padding="4 0"/>
-						<Button DockPanel.Dock="Right" Width="40" Height="30" Content="♠" FontSize="20" FontWeight="Bold"
-												Background="#010A14" Foreground="#A09B8C"/>
+						<!-- Notifications -->
+						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
+								Content="♠"
+								Command="{StaticResource NotificationsCommand}"/>
 					</DockPanel>
 				</Frame.Content>
 			</Frame>

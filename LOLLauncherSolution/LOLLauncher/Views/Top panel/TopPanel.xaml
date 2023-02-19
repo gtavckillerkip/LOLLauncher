@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:LOLLauncher.Views.Top_panel"
              xmlns:vms="clr-namespace:LOLLauncher.ViewModels.Top_panel"
 			 xmlns:converters="clr-namespace:LOLLauncher.Converters"
-			 xmlns:commands="clr-namespace:LOLLauncher.Commands"
+			 xmlns:helpers="clr-namespace:LOLLauncher.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1319">
 
@@ -49,21 +49,21 @@
 
 				<Button Grid.Column="0" Content="ГЛАВНАЯ" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Home"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Home}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Home}"/>
 
 				<Button Grid.Column="1" Content="TFT" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="TFT"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=TFT}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=TFT}"/>
 
 				<Button Grid.Column="2" Content="CLASH" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Clash"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Clash}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Clash}"/>
 			</Grid>
 		</StackPanel>
 
@@ -90,26 +90,26 @@
 
 				<Button Grid.Column="0" Content="P" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Profile"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Profile}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Profile}"/>
 				<Button Grid.Column="1" Content="C" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Collection"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Collection}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Collection}"/>
 				
 				<Button Grid.Column="2" Content="I" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Inventory"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Inventory}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Inventory}"/>
 				
 				<Button Grid.Column="3" Content="S" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Shop"
-						views:TopPanelButtonsHelper.IsSelected="{Binding ChosenButton,
-																		Converter={StaticResource TopButtonChosenToBoolConverter},
-																		ConverterParameter=Shop}"/>
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopButtonChosenToBoolConverter},
+																	ConverterParameter=Shop}"/>
 			</Grid>
 		</StackPanel>
 
