@@ -40,7 +40,7 @@
 			</Grid.ColumnDefinitions>
 
 			<!-- Play -->
-			<Button Grid.Column="0" Content="play" Style="{StaticResource PlayButton}"
+			<Button Grid.Column="0" Content="ИГРАТЬ" Style="{StaticResource PlayButton}"
 					Command="{Binding ClickCommand}" CommandParameter="Play"
 					helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																Converter={StaticResource TopButtonChosenToBoolConverter},

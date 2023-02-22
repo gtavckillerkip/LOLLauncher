@@ -11,16 +11,43 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<Border BorderBrush="Transparent" BorderThickness="1" Background="{TemplateBinding Background}" Padding="20 0">
-						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+					<Border x:Name="TopButtonBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" Padding="20 0">
+						<Grid>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+							<Grid x:Name="CheckClicked" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden">
+								<Grid.Resources>
+									<LinearGradientBrush x:Key="CheckClickedBrush" StartPoint="0,0" EndPoint="0,1">
+										<GradientStop Color="#785A28" Offset="0"/>
+										<GradientStop Color="#BA8F38" Offset="1"/>
+									</LinearGradientBrush>
+								</Grid.Resources>
+
+								<Path Stroke="{DynamicResource CheckClickedBrush}" StrokeThickness="3" StrokeLineJoin="Round">
+									<Path.Clip>
+										<RectangleGeometry Rect="-2, 0, 35, 18"/>
+									</Path.Clip>
+									<Path.Data>
+										<PathGeometry Figures="M -2,-2 15,15 16,15 33,-2"/>
+									</Path.Data>
+								</Path>
+
+								<Path Stroke="{DynamicResource CheckClickedBrush}" StrokeThickness="2" StrokeLineJoin="Round">
+									<Path.Clip>
+										<RectangleGeometry Rect="8, 0, 14, 7"/>
+									</Path.Clip>
+									<Path.Data>
+										<PathGeometry Figures="M 8,-2 15,5 16,5 23,-2"/>
+									</Path.Data>
+								</Path>
+							</Grid>
+						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="True">
 							<Setter Property="Cursor" Value="Hand"/>
-							<Setter Property="Background" Value="Transparent"/>
 						</Trigger>
 						<Trigger Property="helpers:ButtonsHelper.IsSelected" Value="True">
-							<Setter Property="Background">
+							<Setter Property="Background" TargetName="TopButtonBorder">
 								<Setter.Value>
 									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
 										<GradientStop Color="#00000000" Offset="0"/>
@@ -30,6 +57,7 @@
 							</Setter>
 							<Setter Property="Foreground" Value="#F0E6D2"/>
 							<Setter Property="Cursor" Value="Arrow"/>
+							<Setter Property="Visibility" Value="Visible" TargetName="CheckClicked"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -41,13 +69,49 @@
 	<!-- Play button -->
 	<Style TargetType="Button" x:Key="PlayButton">
 		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="Foreground" Value="#F0E6D2"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 					<Frame Padding="30 0">
 						<Frame.Content>
-							<Border BorderBrush="Transparent" BorderThickness="1" Background="LightCyan" Width="205" Height="50">
-								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+							<Border BorderBrush="Transparent" BorderThickness="1" Background="Transparent" Width="206" Height="55">
+								<Grid>
+									<!-- Outer back rect -->
+									<Border BorderBrush="#2F261C" BorderThickness="1" Background="Transparent"
+											Width="190" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 2 0 1">
+										<Grid>
+											<!-- Inner back rect -->
+											<Path HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 3 4 3" Stroke="#0A323C" StrokeThickness="3">
+												<Path.Data>
+													<PathGeometry Figures="M 0,2 149,2 149,40 0,40 A 23,23 0 0,0 0,2 Z"/>
+												</Path.Data>
+											</Path>
+											
+											<!-- Inner front rect -->
+											<Path HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 3 4 3" StrokeThickness="3" Fill="#1E2328">
+												<Path.Stroke>
+													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+														<GradientStop Color="#08BBB5" Offset="0"/>
+														<GradientStop Color="#01678B" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Stroke>
+												<Path.Data>
+													<PathGeometry Figures="M 0,2 129,2 149,21 129,40 0,40 A 23,23 0 0,0 0,2 Z"/>
+												</Path.Data>
+											</Path>
+
+											<Grid Width="123" Height="39" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 3 26 3">
+												<ContentControl HorizontalAlignment="Center" VerticalAlignment="Center"
+																Foreground="#F0E6D2" FontSize="16" FontWeight="Bold"
+																Content="{TemplateBinding Content}"/>
+											</Grid>
+										</Grid>
+									</Border>
+									
+									<!-- LOL icon -->
+									
+								</Grid>
 							</Border>
 						</Frame.Content>
 					</Frame>
