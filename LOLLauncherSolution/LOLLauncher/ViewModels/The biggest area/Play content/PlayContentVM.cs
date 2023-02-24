@@ -2,47 +2,62 @@
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace LOLLauncher.ViewModels.The_biggest_area.Home_content
+namespace LOLLauncher.ViewModels.The_biggest_area.Play_content
 {
 	/// <summary>
-	/// VM-компонент содержимого, связанного с кнопкой "Главная".
+	/// VM-компонент содержимого, связанного с кнопкой "Играть".
 	/// </summary>
-	public class HomeContentVM : INotifyPropertyChanged
+	public class PlayContentVM : INotifyPropertyChanged
 	{
 		/// <summary>
 		/// Кнопки для переключения вкладок содержимого под кнопкой "Главная".
 		/// </summary>
-		public enum HomeContentButtons
+		public enum PlayContentButtons
 		{
 			/// <summary>
-			/// Обзор.
+			/// PVP.
 			/// </summary>
-			Overview,
+			PVP,
 
 			/// <summary>
-			/// Обновления.
+			/// Боты.
 			/// </summary>
-			Updates,
+			Bots,
+
+			/// <summary>
+			/// Тренировка.
+			/// </summary>
+			Training,
+
+			/// <summary>
+			/// Создать свою игру.
+			/// </summary>
+			CreateCustom,
+
+			/// <summary>
+			/// Присоединиться к своей игре.
+			/// </summary>
+			JoinCustom,
 		}
 
 		/// <summary>
 		/// Выбранная кнопка.
 		/// </summary>
-		private HomeContentButtons _chosenButton;
+		private PlayContentButtons _chosenButton;
 
 		/// <summary>
 		/// Конструктор VM-компонента.
 		/// </summary>
-		public HomeContentVM()
+		public PlayContentVM()
 		{
-			_chosenButton = HomeContentButtons.Overview;
-			ClickCommand = new HomeContentTabCommand(this);
+			_chosenButton = PlayContentButtons.PVP;
+			ClickCommand = new PlayContentTabCommand(this);
 		}
 
 		/// <summary>
 		/// Выбранная кнопка.
 		/// </summary>
-		public HomeContentButtons ChosenButton
+		public PlayContentButtons ChosenButton
 		{
 			get => _chosenButton;
 			set

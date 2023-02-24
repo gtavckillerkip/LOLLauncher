@@ -5,12 +5,12 @@ using System.Windows.Data;
 
 namespace LOLLauncher.Converters
 {
-	public class TopButtonChosenToBoolConverter : IValueConverter
+	public class TopTabChosenToBoolConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var buttonType = (TopButtonsVM.MainButtons)Enum.Parse(typeof(TopButtonsVM.MainButtons), parameter.ToString()!);
-			var chosenButtonType = (TopButtonsVM.MainButtons)Enum.Parse(typeof(TopButtonsVM.MainButtons), value.ToString()!);
+			var buttonType = (TopTabsVM.MainButtons)Enum.Parse(typeof(TopTabsVM.MainButtons), parameter.ToString()!);
+			var chosenButtonType = (TopTabsVM.MainButtons)Enum.Parse(typeof(TopTabsVM.MainButtons), value.ToString()!);
 
 			return buttonType == chosenButtonType;
 		}

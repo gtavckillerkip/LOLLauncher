@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace LOLLauncher.Converters
 {
-	public class HCButtonChosenToBoolConverter : IValueConverter
+	public class HomeContentTabChosenToBoolConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

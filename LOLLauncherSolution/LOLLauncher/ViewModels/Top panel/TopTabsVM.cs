@@ -7,7 +7,7 @@ namespace LOLLauncher.ViewModels.Top_panel
     /// <summary>
     /// VM-компонент для основных кнопок.
     /// </summary>
-    public class TopButtonsVM : INotifyPropertyChanged
+    public class TopTabsVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Кнопки верхней панели.
@@ -63,11 +63,11 @@ namespace LOLLauncher.ViewModels.Top_panel
         /// <summary>
         /// Конструктор VM-компонента.
         /// </summary>
-        public TopButtonsVM()
+        public TopTabsVM()
         {
             Instance = this;
             _chosenButton = MainButtons.Home;
-            ClickCommand = new TopButtonClickCommand(this);
+            ClickCommand = new TopTabCommand(this);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace LOLLauncher.ViewModels.Top_panel
 		/// <summary>
 		/// Последний созданный экземпляр VM.
 		/// </summary>
-		public static TopButtonsVM? Instance { get; private set; }
+		public static TopTabsVM? Instance { get; private set; }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;

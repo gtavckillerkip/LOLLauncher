@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="LOLLauncher.Views.The_biggest_area.Contents.PlayContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LOLLauncher.Views.The_biggest_area.Contents"
+			 xmlns:vms="clr-namespace:LOLLauncher.ViewModels.The_biggest_area.Play_content"
+			 xmlns:converters="clr-namespace:LOLLauncher.Converters"
+			 xmlns:helpers="clr-namespace:LOLLauncher.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="796" d:DesignWidth="1319">
+
+	<Frame Padding="44 10">
+		<Frame.Content>
+			<Grid>
+				<Grid.DataContext>
+					<vms:PlayContentVM/>
+				</Grid.DataContext>
+
+				<Grid.Resources>
+					<ResourceDictionary>
+						<ResourceDictionary.MergedDictionaries>
+							<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/HeadingButtonsResources.xaml"/>
+							<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/CommonButtonResources.xaml"/>
+							<ResourceDictionary>
+								<converters:PlayContentTabChosenToBoolConverter x:Key="PlayContentTabChosenToBoolConverter"/>
+								<converters:PlayContentTabChosenToContentConverter x:Key="PlayContentTabChosenToContentConverter"/>
+							</ResourceDictionary>
+						</ResourceDictionary.MergedDictionaries>
+					</ResourceDictionary>
+				</Grid.Resources>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<!-- Heading panel -->
+				<Grid Grid.Row="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="33"/>
+					</Grid.RowDefinitions>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<Button Grid.Column="0" Style="{StaticResource HeadingButtonStyle}"
+							Content="PVP"
+							Command="{Binding ClickCommand}" CommandParameter="PVP"
+							helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource PlayContentTabChosenToBoolConverter},
+																		ConverterParameter=PVP}"/>
+
+					<Button Grid.Column="1" Style="{StaticResource HeadingButtonStyle}"
+							Content="ПРОТИВ БОТОВ"
+							Command="{Binding ClickCommand}" CommandParameter="Bots"
+							helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource PlayContentTabChosenToBoolConverter},
+																		ConverterParameter=Bots}"/>
+
+					<Button Grid.Column="2" Style="{StaticResource HeadingButtonStyle}"
+							Content="ТРЕНИРОВКА"
+							Command="{Binding ClickCommand}" CommandParameter="Training"
+							helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource PlayContentTabChosenToBoolConverter},
+																		ConverterParameter=Training}"/>
+
+					<!-- Separator -->
+					<Rectangle Grid.Column="3" VerticalAlignment="Top" Width="1" Height="25">
+						<Rectangle.Fill>
+							<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+								<GradientStop Color="#00000000" Offset="0"/>
+								<GradientStop Color="#ffCBBD90" Offset="0.5"/>
+								<GradientStop Color="#00000000" Offset="1"/>
+							</LinearGradientBrush>
+						</Rectangle.Fill>
+					</Rectangle>
+
+					<Button Grid.Column="4" Style="{StaticResource HeadingButtonStyle}"
+							Content="СОЗДАТЬ СВОЮ ИГРУ"
+							Command="{Binding ClickCommand}" CommandParameter="CreateCustom"
+							helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource PlayContentTabChosenToBoolConverter},
+																		ConverterParameter=CreateCustom}"/>
+
+					<Button Grid.Column="5" Style="{StaticResource HeadingButtonStyle}"
+							Content="ПРИСОЕДИНИТЬСЯ К СВОЕЙ ИГРЕ"
+							Command="{Binding ClickCommand}" CommandParameter="JoinCustom"
+							helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																		Converter={StaticResource PlayContentTabChosenToBoolConverter},
+																		ConverterParameter=JoinCustom}"/>
+				</Grid>
+
+				<!-- Content -->
+				<ContentPresenter Grid.Row="1" Content="{Binding ChosenButton, Converter={StaticResource PlayContentTabChosenToContentConverter}}"/>
+
+				<Button Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="48" Height="40" Style="{StaticResource CommonButtonStyle}"
+						Content="T"/>
+			</Grid>
+		</Frame.Content>
+	</Frame>
+	
+</UserControl>

@@ -7,7 +7,7 @@ namespace LOLLauncher.Commands
 	/// <summary>
 	/// Команда, обрабатывающая нажатие кнопки на панели вкладок (содержимое под кнопкой "Главная").
 	/// </summary>
-	public class HCButtonClickCommand : ICommand
+	public class HomeContentTabCommand : ICommand
 	{
 		/// <summary>
 		/// VM-компонент содержимого, связанного с кнопкой "Главная".
@@ -18,7 +18,7 @@ namespace LOLLauncher.Commands
 		/// Конструктор команды.
 		/// </summary>
 		/// <param name="homeContentVM"> VM-компонент содержимого, связанного с кнопкой "Главная". </param>
-		public HCButtonClickCommand(HomeContentVM homeContentVM)
+		public HomeContentTabCommand(HomeContentVM homeContentVM)
 		{
 			_homeContentVM = homeContentVM;
 		}

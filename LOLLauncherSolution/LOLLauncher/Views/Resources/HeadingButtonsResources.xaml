@@ -3,7 +3,7 @@
 					xmlns:helpers="clr-namespace:LOLLauncher.Helpers">
 
 	<!-- Стиль кнопок переключения вкладок -->
-	<Style x:Key="HCButtonStyle" TargetType="Button">
+	<Style x:Key="HeadingButtonStyle" TargetType="Button">
 		<Setter Property="OverridesDefaultStyle" Value="True"/>
 		<Setter Property="Foreground" Value="#C6B78C"/>
 		<Setter Property="Background" Value="Transparent"/>
@@ -17,7 +17,7 @@
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="1"/>
 						</Grid.RowDefinitions>
-						
+
 						<Border Grid.Row="0" BorderBrush="Transparent" BorderThickness="1" Background="{TemplateBinding Background}" Padding="20 0">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
 						</Border>
@@ -46,5 +46,5 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 </ResourceDictionary>

@@ -6,23 +6,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-	<UserControl.Content>
-		<Grid>
-			<!-- Weekly free champions button -->
-			<Frame HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="2" Width="281" Height="40" Background="#1E2328" Cursor="Hand">
-				<Frame.BorderBrush>
-					<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-						<GradientStop Color="#C8A96C" Offset="0"/>
-						<GradientStop Color="#795C29" Offset="1"/>
-					</LinearGradientBrush>
-				</Frame.BorderBrush>
-				<Frame.Content>
-					<TextBlock Foreground="#CDBE91" Text="Список бесплатных чемпионов" FontSize="16"
-									   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-				</Frame.Content>
-			</Frame>
+	<Grid>
+		<Grid.Resources>
+			<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/CommonButtonResources.xaml"/>
+		</Grid.Resources>
+		<!-- Weekly free champions button -->
+		<Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="281" Height="40" Style="{StaticResource CommonButtonStyle}"
+				Content="Список бесплатных чемпионов"/>
 
-			<TextBlock Text="Overview" FontSize="36" Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		</Grid>
-	</UserControl.Content>
+		<TextBlock Text="Overview" FontSize="36" Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	</Grid>
 </UserControl>

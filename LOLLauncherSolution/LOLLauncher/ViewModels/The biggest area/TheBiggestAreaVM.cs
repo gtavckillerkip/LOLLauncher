@@ -12,12 +12,12 @@ namespace LOLLauncher.ViewModels.The_biggest_area
         /// </summary>
         public TheBiggestAreaVM()
         {
-            TopButtonsVM = TopButtonsVM.Instance;
+            TopTabsVM = TopTabsVM.Instance;
         }
 
         /// <summary>
         /// VM-компонент панели с верхними кнопками.
         /// </summary>
-        public TopButtonsVM? TopButtonsVM { get; set; }
+        public TopTabsVM? TopTabsVM { get; set; }
     }
 }

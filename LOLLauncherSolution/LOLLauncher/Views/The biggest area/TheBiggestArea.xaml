@@ -15,10 +15,10 @@
 	</UserControl.DataContext>
 
 	<UserControl.Resources>
-		<converters:TopButtonChosenToContentConverter x:Key="TopButtonChosenToContentConverter"/>
+		<converters:TopTabChosenToContentConverter x:Key="TopTabChosenToContentConverter"/>
 	</UserControl.Resources>
 
 	<UserControl.Content>
-		<ContentPresenter Content="{Binding TopButtonsVM.ChosenButton, Converter={StaticResource TopButtonChosenToContentConverter}}"/>
+		<ContentPresenter Content="{Binding TopTabsVM.ChosenButton, Converter={StaticResource TopTabChosenToContentConverter}}"/>
 	</UserControl.Content>
 </UserControl>

@@ -1,6 +1,5 @@
 ﻿using LOLLauncher.ViewModels.Top_panel;
 using System;
-using System.Windows;
 using System.Windows.Input;
 
 namespace LOLLauncher.Commands
@@ -8,20 +7,20 @@ namespace LOLLauncher.Commands
 	/// <summary>
 	/// Команда, обрабатывающая нажатие на кнопку верхней панели.
 	/// </summary>
-	public class TopButtonClickCommand : ICommand
+	public class TopTabCommand : ICommand
 	{
 		/// <summary>
 		/// VM-компонент набора верхних кнопок.
 		/// </summary>
-		private readonly TopButtonsVM _topButtonsVM;
+		private readonly TopTabsVM _topButtonsVM;
 
 		/// <summary>
 		/// Конструктор команды.
 		/// </summary>
-		/// <param name="topButtonsVM"> VM-компонент набора верхних кнопок. </param>
-		public TopButtonClickCommand(TopButtonsVM topButtonsVM)
+		/// <param name="topTabsVM"> VM-компонент набора верхних кнопок. </param>
+		public TopTabCommand(TopTabsVM topTabsVM)
 		{
-			_topButtonsVM = topButtonsVM;
+			_topButtonsVM = topTabsVM;
 		}
 
 		public event EventHandler? CanExecuteChanged;
@@ -33,7 +32,7 @@ namespace LOLLauncher.Commands
 
 		public void Execute(object? parameter)
 		{
-			var clicked = (TopButtonsVM.MainButtons)Enum.Parse(typeof(TopButtonsVM.MainButtons), parameter!.ToString()!);
+			var clicked = (TopTabsVM.MainButtons)Enum.Parse(typeof(TopTabsVM.MainButtons), parameter!.ToString()!);
 			if (_topButtonsVM.ChosenButton != clicked)
 			{
 				_topButtonsVM.ChosenButton = clicked;
