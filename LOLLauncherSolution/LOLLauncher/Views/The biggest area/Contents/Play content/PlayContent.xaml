@@ -11,6 +11,14 @@
              d:DesignHeight="796" d:DesignWidth="1319">
 
 	<Frame Padding="44 10">
+		<!-- temporary -->
+		<Frame.Background>
+			<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+				<GradientStop Color="Transparent" Offset="0.1"/>
+				<GradientStop Color="#330079B0" Offset="1"/>
+			</LinearGradientBrush>
+		</Frame.Background>
+		
 		<Frame.Content>
 			<Grid>
 				<Grid.DataContext>

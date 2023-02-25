@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LOLLauncher.Views"
+		xmlns:vms="clr-namespace:LOLLauncher.ViewModels"
 		xmlns:topPanel="clr-namespace:LOLLauncher.Views.Top_panel"
 		xmlns:userProfilePanel="clr-namespace:LOLLauncher.Views.User_profile_panel"
 		xmlns:biggestArea="clr-namespace:LOLLauncher.Views.The_biggest_area"
@@ -14,6 +15,10 @@
 		WindowStartupLocation="CenterScreen">
 
 	<Frame>
+		<Frame.DataContext>
+			<vms:MainWindowVM/>
+		</Frame.DataContext>
+		
 		<Frame.BorderThickness>
 			<Thickness Top="0" Left="1" Right="1" Bottom="1"/>
 		</Frame.BorderThickness>
@@ -40,11 +45,17 @@
 						<ColumnDefinition Width="33*"/>
 						<ColumnDefinition Width="7*"/>
 					</Grid.ColumnDefinitions>
-					
+
+					<Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+						<Frame.Background>
+							<ImageBrush ImageSource="{Binding ExpandedBackgroundURI}"/>
+						</Frame.Background>
+					</Frame>
+
 					<!-- Top panel, except profile -->
 					<topPanel:TopPanel Grid.Row="0" Grid.Column="0"/>
 
-					<!-- Uset profile panel -->
+					<!-- User profile panel -->
 					<userProfilePanel:UserProfilePanel Grid.Row="0" Grid.Column="1"/>
 
 					<!-- Splitting line throughout the whole main grid -->

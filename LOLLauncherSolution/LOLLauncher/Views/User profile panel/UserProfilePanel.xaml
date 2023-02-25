@@ -4,7 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LOLLauncher.Views.User_profile_panel"
+			 xmlns:vms="clr-namespace:LOLLauncher.ViewModels.User_profile_panel"
 			 xmlns:syscommands="clr-namespace:LOLLauncher.Commands.System"
+			 xmlns:helpers="clr-namespace:LOLLauncher.Helpers"
+			 xmlns:converters="clr-namespace:LOLLauncher.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="279">
 
@@ -13,68 +16,84 @@
 			<ResourceDictionary>
 				<ResourceDictionary.MergedDictionaries>
 					<ResourceDictionary Source="SystemButtonsResources.xaml"/>
+					<ResourceDictionary Source="UserIconButtonResources.xaml"/>
+					<ResourceDictionary Source="StatusLineResources.xaml"/>
 					<ResourceDictionary>
 						<syscommands:ExitCommand x:Key="ExitCommand"/>
 						<syscommands:SettingsCommand x:Key="SettingsCommand"/>
 						<syscommands:MinimizeCommand x:Key="MinimizeCommand"/>
 						<syscommands:SupportCommand x:Key="SupportCommand"/>
 						<syscommands:NotificationsCommand x:Key="NotificationsCommand"/>
+						<converters:IconIdToURIConverter x:Key="IconIdToURIConverter"/>
+						<converters:NotificationsPresenceToBoolConverter x:Key="NotificationsPresenceToBoolConverter"/>
 					</ResourceDictionary>
 				</ResourceDictionary.MergedDictionaries>
 			</ResourceDictionary>
 		</Grid.Resources>
-		
+
+		<Grid.DataContext>
+			<vms:UserProfilePanelVM/>
+		</Grid.DataContext>
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="100"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 
-		<Frame Grid.Column="0" Background="LightPink"/>
+		<Button Grid.Column="0" Style="{StaticResource UserIconButtonStyle}"
+				Content="{Binding IconId, Converter={StaticResource IconIdToURIConverter}}"/>
 
-		<Grid Grid.Column="1">
+		<Grid Grid.Column="1" Margin="0 0 4 0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="2*"/>
 				<RowDefinition Height="1*"/>
 				<RowDefinition Height="2*"/>
 			</Grid.RowDefinitions>
 
-			<Frame Grid.Row="0" VerticalAlignment="Top" Padding="0 0 4 0">
-				<Frame.Content>
-					<DockPanel LastChildFill="False">
-						<!-- Exit -->
-						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
-								Content="x"
-								Command="{StaticResource ExitCommand}"/>
-						<!-- Settings -->
-						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
-								Content="☼"
-								Command="{StaticResource SettingsCommand}"/>
-						<!-- Minimize -->
-						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
-								Content="_"
-								Command="{StaticResource MinimizeCommand}"/>
-						<!-- Support -->
-						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
-								Content="?"
-								Command="{StaticResource SupportCommand}"/>
-					</DockPanel>
-				</Frame.Content>
-			</Frame>
+			<Grid Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
 
-			<TextBlock Grid.Row="1" VerticalAlignment="Center" Foreground="#F0E6C6" Text="NickName" FontSize="16" FontWeight="Bold"/>
+				<!-- Support -->
+				<Button Grid.Column="0" Style="{StaticResource SupportButtonStyle}"
+						Content="?"
+						Command="{StaticResource SupportCommand}"/>
+				<!-- Minimize -->
+				<Button Grid.Column="1" Style="{StaticResource MinimizeButtonStyle}"
+						Command="{StaticResource MinimizeCommand}"/>
+				<!-- Settings -->
+				<Button Grid.Column="2" Style="{StaticResource SettingsButtonStyle}"
+						Command="{StaticResource SettingsCommand}"/>
+				<!-- Exit -->
+				<Button Grid.Column="3" Style="{StaticResource ExitButtonStyle}"
+						Command="{StaticResource ExitCommand}"/>
+			</Grid>
 
-			<Frame Grid.Row="2" VerticalAlignment="Top" Padding="0 0 4 0">
-				<Frame.Content>
-					<DockPanel LastChildFill="False">
-						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#66F8A0" Text="○" FontSize="16"/>
-						<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="#09A646" Text="Online" FontSize="16" Padding="4 0"/>
-						<!-- Notifications -->
-						<Button DockPanel.Dock="Right" Style="{StaticResource SystemButtonStyle}"
-								Content="♠"
-								Command="{StaticResource NotificationsCommand}"/>
-					</DockPanel>
-				</Frame.Content>
-			</Frame>
+			<TextBlock Grid.Row="1" VerticalAlignment="Center" Foreground="#F0E6C6" Text="{Binding Nickname}" FontSize="16" FontWeight="Bold"/>
+
+			<Grid Grid.Row="2" VerticalAlignment="Top">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<DockPanel Grid.Column="0" LastChildFill="False">
+					<Button DockPanel.Dock="Left" Style="{StaticResource StatusEllipseStyle}"
+							helpers:VisualStatusHelper.Status="{Binding Status}"/>
+					<Button DockPanel.Dock="Left" VerticalAlignment="Center" Margin="7 0" Style="{StaticResource StatusStringStyle}"
+							Content="{Binding StatusMessage}"
+							helpers:VisualStatusHelper.Status="{Binding Status}"/>
+				</DockPanel>
+
+				<!-- Notifications -->
+				<Button Grid.Column="1" Style="{StaticResource NotificationsButtonStyle}"
+						helpers:NotificationsHelper.HasAnyNotifications="{Binding Notifications, Converter={StaticResource NotificationsPresenceToBoolConverter}}"
+						Command="{StaticResource NotificationsCommand}"/>
+			</Grid>
 		</Grid>
 	</Grid>
 </UserControl>
