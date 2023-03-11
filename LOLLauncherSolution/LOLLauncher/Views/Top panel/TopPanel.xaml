@@ -36,7 +36,6 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 
 			<!-- Play -->
@@ -59,13 +58,6 @@
 					helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																Converter={StaticResource TopTabChosenToBoolConverter},
 																ConverterParameter=TFT}"/>
-
-			<!-- Clash -->
-			<Button Grid.Column="3" Content="CLASH" Style="{StaticResource TopButtonStyle}"
-					Command="{Binding ClickCommand}" CommandParameter="Clash"
-					helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
-																Converter={StaticResource TopTabChosenToBoolConverter},
-																ConverterParameter=Clash}"/>
 		</Grid>
 
 		<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
@@ -87,26 +79,32 @@
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 					<ColumnDefinition/>
+					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 
-				<Button Grid.Column="0" Content="P" Style="{StaticResource TopButtonStyle}"
+				<Button Grid.Column="0" Content="L" Style="{StaticResource TopButtonStyle}"
+						Command="{Binding ClickCommand}" CommandParameter="Clash"
+						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
+																	Converter={StaticResource TopTabChosenToBoolConverter},
+																	ConverterParameter=Clash}"/>
+				<Button Grid.Column="1" Content="P" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Profile"
 						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																	Converter={StaticResource TopTabChosenToBoolConverter},
 																	ConverterParameter=Profile}"/>
-				<Button Grid.Column="1" Content="C" Style="{StaticResource TopButtonStyle}"
+				<Button Grid.Column="2" Content="C" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Collection"
 						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																	Converter={StaticResource TopTabChosenToBoolConverter},
 																	ConverterParameter=Collection}"/>
 
-				<Button Grid.Column="2" Content="I" Style="{StaticResource TopButtonStyle}"
+				<Button Grid.Column="3" Content="I" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Inventory"
 						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																	Converter={StaticResource TopTabChosenToBoolConverter},
 																	ConverterParameter=Inventory}"/>
 
-				<Button Grid.Column="3" Content="S" Style="{StaticResource TopButtonStyle}"
+				<Button Grid.Column="4" Content="S" Style="{StaticResource TopButtonStyle}"
 						Command="{Binding ClickCommand}" CommandParameter="Shop"
 						helpers:ButtonsHelper.IsSelected="{Binding ChosenButton,
 																	Converter={StaticResource TopTabChosenToBoolConverter},
