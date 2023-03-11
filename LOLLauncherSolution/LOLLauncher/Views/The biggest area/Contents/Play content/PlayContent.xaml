@@ -41,6 +41,7 @@
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition/>
+					<RowDefinition Height="79"/>
 				</Grid.RowDefinitions>
 
 				<!-- Heading panel -->
@@ -107,6 +108,10 @@
 
 				<!-- Content -->
 				<ContentPresenter Grid.Row="1" Content="{Binding ChosenButton, Converter={StaticResource PlayContentTabChosenToContentConverter}}"/>
+
+				<!-- Confirmation button -->
+				<Button Grid.Row="2" Width="300" Height="53"
+						Content="Подтвердить"/>
 
 				<Button Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="48" Height="40" Style="{StaticResource CommonButtonStyle}"
 						Content="T"/>

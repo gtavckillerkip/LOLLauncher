@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LOLLauncher.Views.The_biggest_area.Contents.Play_content"
              mc:Ignorable="d" 
-             d:DesignHeight="743" d:DesignWidth="1231">
+             d:DesignHeight="664" d:DesignWidth="1231">
 	
     <Grid>
 		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="PVP" FontSize="50" Foreground="Wheat"/>
