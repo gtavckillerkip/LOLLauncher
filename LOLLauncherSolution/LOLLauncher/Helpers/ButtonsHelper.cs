@@ -3,7 +3,7 @@
 namespace LOLLauncher.Helpers
 {
     /// <summary>
-    /// Вспомогательный класс для работы с кнопками верхней панели.
+    /// Вспомогательный класс для работы с кнопками.
     /// </summary>
     public static class ButtonsHelper
     {
@@ -20,5 +20,22 @@ namespace LOLLauncher.Helpers
 
         public static void SetIsSelected(DependencyObject dependency, bool value) =>
             dependency.SetValue(IsSelectedProperty, value);
+
+		/// <summary>
+		/// Наведена ли мышь на соответствующую описанию кнопку.
+		/// </summary>
+        /// <remarks>
+        /// Свойство использовать для текста описания карты.
+        /// </remarks>
+		public static DependencyProperty IsMouseOverButtonProperty = DependencyProperty.RegisterAttached(
+			"IsMouseOverButton",
+			typeof(bool),
+			typeof(ButtonsHelper));
+
+		public static bool GetIsMouseOverButton(DependencyObject dependency) =>
+			(bool)dependency.GetValue(IsMouseOverButtonProperty);
+
+		public static void SetIsMouseOverButton(DependencyObject dependency, bool value) =>
+			dependency.SetValue(IsMouseOverButtonProperty, value);
 	}
 }

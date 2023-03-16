@@ -1,0 +1,193 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					x:Class="LOLLauncher.Views.Resources.Custom_controls.ComboBoxStyles">
+
+	<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="BorderGradient">
+		<GradientStop Color="#C5A462" Offset="0"/>
+		<GradientStop Color="#6D5925" Offset="1"/>
+	</LinearGradientBrush>
+	
+	<!-- Стиль выпадающего списка. -->
+	<Style TargetType="ComboBox" x:Key="ComboBoxStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="MinWidth" Value="50"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="MaxDropDownHeight" Value="190"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ComboBox">
+					<Border BorderBrush="{DynamicResource BorderGradient}" BorderThickness="1" Background="Transparent" x:Name="Border">
+						<Grid>
+							<ToggleButton IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+								<ToggleButton.Template>
+									<ControlTemplate>
+										<Border BorderBrush="Transparent" BorderThickness="1" Background="Transparent"/>
+									</ControlTemplate>
+								</ToggleButton.Template>
+							</ToggleButton>
+							
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="32"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0" Text="{TemplateBinding Text}" FontSize="15" Foreground="#A09B8C"
+										   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8 0 0 0" x:Name="ChosenText"/>
+
+								<Path Grid.Column="1" Width="8" Height="16" Stroke="#AE9664" StrokeThickness="2"
+									  Data="M 1,4 3.5,2 6,4 M 6,11 3.5,13 1,11" x:Name="Arrows"/>
+							</Grid>
+
+							<Popup Placement="Bottom" HorizontalOffset="-1" IsOpen="{TemplateBinding IsDropDownOpen}" Focusable="False" PopupAnimation="Scroll"
+								   MinWidth="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"
+								   MaxHeight="{TemplateBinding MaxDropDownHeight}">
+								<Border BorderBrush="#463714" BorderThickness="1" Background="#010A13">
+									<ScrollViewer Style="{DynamicResource ScrollViewerStyle}">
+										<StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+									</ScrollViewer>
+								</Border>
+							</Popup>
+						</Grid>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="Border">
+								<Setter.Value>
+									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+										<GradientStop Color="Transparent" Offset="0"/>
+										<GradientStop Color="#40C5A462" Offset="1"/>
+									</LinearGradientBrush>
+								</Setter.Value>
+							</Setter>
+							<Setter Property="Cursor" Value="Hand"/>
+						</Trigger>
+						<Trigger Property="IsDropDownOpen" Value="True">
+							<Setter Property="BorderBrush" Value="#463714" TargetName="Border"/>
+							<Setter Property="Background" Value="Transparent" TargetName="Border"/>
+							<Setter Property="Foreground" Value="#463714" TargetName="ChosenText"/>
+							<Setter Property="Stroke" Value="#463714" TargetName="Arrows"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemContainerStyle" Value="{DynamicResource ComboBoxItemStyle}"/>
+	</Style>
+
+	<Style TargetType="ComboBoxItem" x:Key="ComboBoxItemStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="Foreground" Value="#CDBE91"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="Height" Value="44"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ComboBoxItem">
+					<Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent" x:Name="Border">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="0.5"/>
+								<RowDefinition/>
+								<RowDefinition Height="0.5"/>
+							</Grid.RowDefinitions>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="44"/>
+							</Grid.ColumnDefinitions>
+
+							<Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#1F2123"/>
+
+							<ContentPresenter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+														  Content="{TemplateBinding Content}" Margin="8 0"/>
+
+							<Rectangle Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Fill="#1F2123"/>
+
+							<Path Grid.Row="1" Grid.Column="1" Stroke="#CDC6B6" StrokeThickness="2" Width="25" Height="25" Visibility="Hidden"
+											  Data="M 8,13 12,17 23,6" x:Name="Check"/>
+						</Grid>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#1E2328" TargetName="Border"/>
+							<Setter Property="Foreground" Value="#F0E6D2"/>
+							<Setter Property="Cursor" Value="Hand"/>
+						</Trigger>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Visibility" Value="Visible" TargetName="Check"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<EventSetter Event="RequestBringIntoView" Handler="ComboBox_RequestBringIntoView"/>
+	</Style>
+
+	<Style TargetType="ScrollViewer" x:Key="ScrollViewerStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ScrollViewer">
+					<Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="13"/>
+							</Grid.ColumnDefinitions>
+
+							<ScrollContentPresenter Grid.Column="0" CanContentScroll="{TemplateBinding CanContentScroll}"/>
+
+							<ScrollBar Grid.Column="1" x:Name="PART_VerticalScrollBar"
+									   Minimum="0" Maximum="{TemplateBinding ScrollableHeight}"
+									   Value="{TemplateBinding VerticalOffset}"
+									   ViewportSize="{TemplateBinding ViewportHeight}"
+									   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+								<ScrollBar.Style>
+									<Style TargetType="ScrollBar">
+										<Setter Property="OverridesDefaultStyle" Value="True"/>
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="ScrollBar">
+													<Border BorderBrush="Transparent" BorderThickness="0" Background="#010A13">
+														<Track IsDirectionReversed="True">
+															<Track.Thumb>
+																<Thumb>
+																	<Thumb.Style>
+																		<Style TargetType="Thumb">
+																			<Setter Property="IsTabStop" Value="False"/>
+																			<Setter Property="Focusable" Value="False"/>
+																			<Setter Property="Template">
+																				<Setter.Value>
+																					<ControlTemplate>
+																						<Rectangle Width="7" Height="{TemplateBinding Height}"
+																								   RadiusX="2" RadiusY="2"
+																								   Fill="#785A28"/>
+																					</ControlTemplate>
+																				</Setter.Value>
+																			</Setter>
+																		</Style>
+																	</Thumb.Style>
+																</Thumb>
+															</Track.Thumb>
+														</Track>
+													</Border>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</ScrollBar.Style>
+							</ScrollBar>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

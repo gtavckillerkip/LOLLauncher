@@ -18,5 +18,5 @@ namespace LOLLauncher.Views.The_biggest_area.Contents.Play_content
 		{
 			return _instance ??= new PVP();
 		}
-	}
+    }
 }

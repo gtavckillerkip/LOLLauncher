@@ -1,4 +1,4 @@
-﻿using LOLLauncher.ViewModels.The_biggest_area.Play_content;
+﻿using LOLLauncher.ViewModels.The_biggest_area.Play_content.Custom;
 using LOLLauncher.Views.The_biggest_area.Contents.Play_content;
 using LOLLauncher.Views.The_biggest_area.Contents.Play_content.Custom;
 using System;
@@ -7,16 +7,15 @@ using System.Windows.Data;
 
 namespace LOLLauncher.Converters
 {
-	public class PlayContentTabChosenToContentConverter : IValueConverter
-	{
+	public class CustomVariantChosenToContentConverter : IValueConverter
+    {
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return (PlayContentVM.PlayContentButtons)value switch
+			return (CustomVM.CustomVariant)value switch
 			{
-				PlayContentVM.PlayContentButtons.PVP =>				PVP.GetInstance(),
-				PlayContentVM.PlayContentButtons.Bots =>			Bots.GetInstance(),
-				PlayContentVM.PlayContentButtons.Custom =>			Custom.GetInstance(),
-				PlayContentVM.PlayContentButtons.Training =>		Training.GetInstance(),
+				CustomVM.CustomVariant.Base =>			BaseCustom.GetInstance(),
+				CustomVM.CustomVariant.CreateCustom =>	CreateCustom.GetInstance(),
+				CustomVM.CustomVariant.JoinCustom =>	JoinCustom.GetInstance(),
 				_ => new object(),
 			};
 		}

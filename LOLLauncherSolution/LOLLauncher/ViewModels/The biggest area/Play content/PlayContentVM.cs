@@ -1,4 +1,5 @@
 ﻿using LOLLauncher.Commands;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -30,14 +31,9 @@ namespace LOLLauncher.ViewModels.The_biggest_area.Play_content
 			Training,
 
 			/// <summary>
-			/// Создать свою игру.
+			/// Своя игра.
 			/// </summary>
-			CreateCustom,
-
-			/// <summary>
-			/// Присоединиться к своей игре.
-			/// </summary>
-			JoinCustom,
+			Custom,
 		}
 
 		/// <summary>
@@ -52,7 +48,19 @@ namespace LOLLauncher.ViewModels.The_biggest_area.Play_content
 		{
 			_chosenButton = PlayContentButtons.PVP;
 			ClickCommand = new PlayContentTabCommand(this);
+			ButtonsNames = new Dictionary<PlayContentButtons, string>
+			{
+				[PlayContentButtons.PVP] = "PVP",
+				[PlayContentButtons.Bots] = "ПРОТИВ БОТОВ",
+				[PlayContentButtons.Custom] = "СВОЯ ИГРА",
+				[PlayContentButtons.Training] = "ТРЕНИРОВКА",
+			};
 		}
+
+		/// <summary>
+		/// Названия кнопок.
+		/// </summary>
+		public Dictionary<PlayContentButtons, string> ButtonsNames { get; set; }
 
 		/// <summary>
 		/// Выбранная кнопка.
