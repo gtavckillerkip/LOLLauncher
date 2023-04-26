@@ -11,7 +11,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<Border x:Name="TopButtonBorder" BorderBrush="Transparent" BorderThickness="1" Background="Transparent" Padding="20 0">
+					<Border x:Name="TopButtonBorder" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Padding="20 0">
 						<Grid>
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
 							<Grid x:Name="CheckClicked" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Hidden">
@@ -43,9 +43,24 @@
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Cursor" Value="Hand"/>
-						</Trigger>
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="True"/>
+								<Condition Property="helpers:ButtonsHelper.IsSelected" Value="False"/>
+							</MultiTrigger.Conditions>
+							<MultiTrigger.Setters>
+								<Setter Property="Background" TargetName="TopButtonBorder">
+									<Setter.Value>
+										<RadialGradientBrush GradientOrigin="0.5,1" Center="0.5,1" RadiusX="1.5" RadiusY="1">
+											<GradientStop Color="#ff465456" Offset="0"/>
+											<GradientStop Color="#00000000" Offset="1"/>
+										</RadialGradientBrush>
+									</Setter.Value>
+								</Setter>
+								<Setter Property="Foreground" Value="#F0E6D2"/>
+								<Setter Property="Cursor" Value="Hand"/>
+							</MultiTrigger.Setters>
+						</MultiTrigger>
 						<Trigger Property="helpers:ButtonsHelper.IsSelected" Value="True">
 							<Setter Property="Background" TargetName="TopButtonBorder">
 								<Setter.Value>
@@ -89,7 +104,7 @@
 											</Path>
 											
 											<!-- Inner front rect -->
-											<Path HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 3 4 3" StrokeThickness="3" Fill="#1E2328">
+											<Path HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 3 4 3" StrokeThickness="3" Fill="#1E2328" x:Name="InnerRect">
 												<Path.Stroke>
 													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
 														<GradientStop Color="#08BBB5" Offset="0"/>
@@ -123,7 +138,7 @@
 											</Ellipse>
 											
 											<!-- Blue circle -->
-											<Ellipse Width="39" Height="39" StrokeThickness="2" Stroke="#CC0695A9">
+											<Ellipse Width="39" Height="39" StrokeThickness="2" Stroke="#CC0695A9" x:Name="IconEllipse">
 												<Ellipse.Fill>
 													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
 														<GradientStop Color="Transparent" Offset="0"/>
@@ -170,11 +185,24 @@
 					</Frame>
 
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="True"/>
+								<Condition Property="helpers:ButtonsHelper.IsSelected" Value="False"/>
+							</MultiTrigger.Conditions>
 							<Setter Property="Cursor" Value="Hand"/>
-						</Trigger>
+							<Setter Property="Stroke" Value="#8BFCFF" TargetName="InnerRect"/>
+							<Setter Property="Stroke" Value="#25D8EE" TargetName="IconEllipse"/>
+						</MultiTrigger>
 						<Trigger Property="helpers:ButtonsHelper.IsSelected" Value="True">
 							<Setter Property="Cursor" Value="Arrow"/>
+							<Setter Property="Stroke" Value="#5C5B57" TargetName="InnerRect"/>
+							<Setter Property="Data" TargetName="InnerRect">
+								<Setter.Value>
+									<PathGeometry Figures="M 0,2 149,2 149,40 0,40 A 29,29 0 0,0 0,2 Z"/>
+								</Setter.Value>
+							</Setter>
+							<Setter Property="Foreground" Value="#3C3C41"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
