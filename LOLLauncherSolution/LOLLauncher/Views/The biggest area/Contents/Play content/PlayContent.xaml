@@ -44,11 +44,7 @@
 				</Grid.RowDefinitions>
 
 				<!-- Heading panel -->
-				<Grid Grid.Row="0">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="33"/>
-					</Grid.RowDefinitions>
-
+				<Grid Grid.Row="0" Height="33">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="Auto"/>

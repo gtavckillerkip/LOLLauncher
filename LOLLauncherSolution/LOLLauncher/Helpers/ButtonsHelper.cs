@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LOLLauncher.Common.Enums;
+using System.Windows;
 
 namespace LOLLauncher.Helpers
 {
@@ -37,5 +38,19 @@ namespace LOLLauncher.Helpers
 
 		public static void SetIsMouseOverButton(DependencyObject dependency, bool value) =>
 			dependency.SetValue(IsMouseOverButtonProperty, value);
+
+		/// <summary>
+		/// Текущее направление сортировки, за которую отвечает кнопка.
+		/// </summary>
+		public static DependencyProperty SortDirectionProperty = DependencyProperty.RegisterAttached(
+			"SortDirection",
+			typeof(SortDirection),
+			typeof(ButtonsHelper));
+
+		public static SortDirection GetSortDirection(DependencyObject dependency) =>
+			(SortDirection)dependency.GetValue(SortDirectionProperty);
+
+		public static void SetSortDirection(DependencyObject dependency, SortDirection value) =>
+			dependency.SetValue(SortDirectionProperty, value);
 	}
 }

@@ -4,10 +4,77 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LOLLauncher.Views.The_biggest_area.Contents.Play_content"
+			 xmlns:helpers="clr-namespace:LOLLauncher.Helpers"
+			 xmlns:vms="clr-namespace:LOLLauncher.ViewModels.The_biggest_area.Play_content.Custom"
              mc:Ignorable="d" 
              d:DesignHeight="743" d:DesignWidth="1231">
 
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/HelpingButtonsResources.xaml"/>
+				<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/Custom controls/TextBoxStyles.xaml"/>
+				<ResourceDictionary Source="/LOLLauncher;component/Views/Resources/Custom controls/CheckBoxStyles.xaml"/>
+				<ResourceDictionary Source="CustomGameResources.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<UserControl.DataContext>
+		<vms:JoinCustomVM/>
+	</UserControl.DataContext>
+	
 	<Grid>
-		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Join custom" FontSize="50" Foreground="Wheat"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="66"/>
+			<RowDefinition Height="78"/>
+			<RowDefinition Height="1"/>
+			<RowDefinition Height="519"/>
+			<RowDefinition Height="79"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" Text="ЛОББИ СВОЕЙ ИГРЫ" FontSize="22" FontWeight="Bold" Foreground="#F0E7D3" VerticalAlignment="Bottom"/>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+			<Button Width="36" Height="36" Style="{StaticResource RoundUpdateButtonStyle}" VerticalAlignment="Center"/>
+			<TextBox Width="313" Height="37" Text="{Binding SearchGameName}" Style="{StaticResource SearchBoxStyle}" Margin="19 0 0 0" VerticalAlignment="Center"/>
+			<CheckBox IsThreeState="False" Content="{Binding SpectatorsAllowmentCheckBoxContent}" Style="{StaticResource CheckBoxStyle}" Margin="19 0 0 0" VerticalAlignment="Center"/>
+			<CheckBox IsThreeState="False" Content="{Binding OnlyClosedLobbiesCheckBoxContent}" Style="{StaticResource CheckBoxStyle}" Margin="19 0 0 0" VerticalAlignment="Center"/>
+		</StackPanel>
+
+		<!-- Splitter -->
+		<Rectangle Grid.Row="2" Fill="#5C6665"/>
+
+		<StackPanel Grid.Row="3" Margin="0 12 0 0">
+			<Grid Height="40">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="32"/>
+					<ColumnDefinition Width="416"/>
+					<ColumnDefinition Width="342"/>
+					<ColumnDefinition Width="248"/>
+					<ColumnDefinition Width="92"/>
+					<ColumnDefinition Width="92"/>
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Column="1" Content="{Binding SortByNameButtonContent}" Style="{StaticResource LobbiesSortingButtonStyle}"
+						Command="{Binding CustomGameSortButtonCommand}" CommandParameter="Name"
+						helpers:ButtonsHelper.SortDirection="{Binding SortedByName}"/>
+				<Button Grid.Column="2" Content="{Binding SortByOwnerButtonContent}" Style="{StaticResource LobbiesSortingButtonStyle}"
+						Command="{Binding CustomGameSortButtonCommand}" CommandParameter="Owner"
+						helpers:ButtonsHelper.SortDirection="{Binding SortedByOwner}"/>
+				<Button Grid.Column="3" Content="{Binding SortByMapButtonContent}" Style="{StaticResource LobbiesSortingButtonStyle}"
+						Command="{Binding CustomGameSortButtonCommand}" CommandParameter="Map"
+						helpers:ButtonsHelper.SortDirection="{Binding SortedByMap}"/>
+
+				<ContentControl Grid.Column="4" Style="{StaticResource IconPlayersCountStyle}"/>
+				<ContentControl Grid.Column="5" Style="{StaticResource IconSpectatorsStyle}"/>
+			</Grid>
+
+			<ListBox ItemsSource="{Binding Lobbies}" Height="467" Style="{StaticResource LobbiesListStyle}"/>
+		</StackPanel>
+		
+		<!-- Confirmation button -->
+		<Button Grid.Row="4" Width="300" Height="53"
+				Content="Присоединиться"/>
 	</Grid>
 </UserControl>

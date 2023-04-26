@@ -4,6 +4,7 @@
 	<!-- Стиль для иконки-кнопки. -->
 	<Style x:Key="UserIconButtonStyle" TargetType="Button">
 		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">

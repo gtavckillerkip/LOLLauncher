@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:convetrers="clr-namespace:LOLLauncher.Converters">
 
 	<!-- Стиль поля ввода. -->
 	<Style TargetType="TextBox" x:Key="TextBoxStyle">
@@ -26,6 +27,82 @@
 						<Trigger Property="IsFocused" Value="True">
 							<Setter Property="CaretBrush" Value="#F0E7D3"/>
 						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<!-- Стиль поля поиска. -->
+	<Style TargetType="TextBox" x:Key="SearchBoxStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="MinWidth" Value="50"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+		<Setter Property="AllowDrop" Value="True"/>
+		<Setter Property="Foreground" Value="#A09B8C"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="TextBox">
+					<ControlTemplate.Resources>
+						<convetrers:EmptyStringToCollapsedVisibleConverter x:Key="EmptyStringToCollapsedVisibleConverter"/>
+					</ControlTemplate.Resources>
+
+					<Border BorderBrush="#785A28" BorderThickness="1" Background="#f0000000" x:Name="Border">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+
+							<Path Grid.Column="0" Width="32" Height="32" Stroke="#ECE2CE" StrokeThickness="2">
+								<Path.Data>
+									<GeometryGroup>
+										<EllipseGeometry RadiusX="4.5" RadiusY="4.5" Center="16,16"/>
+										<LineGeometry StartPoint="19,19" EndPoint="23,23"/>
+									</GeometryGroup>
+								</Path.Data>
+							</Path>
+							<TextBlock Grid.Column="1" Text="Найти игру" Visibility="Hidden" VerticalAlignment="Center" x:Name="TextPlaceHolder"/>
+							<ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="False"
+										  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+										  HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</Grid>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Cursor" Value="IBeam"/>
+						</Trigger>
+						<Trigger Property="IsFocused" Value="True">
+							<Setter Property="CaretBrush" Value="#F0E7D3"/>
+							<Setter Property="BorderBrush" TargetName="Border">
+								<Setter.Value>
+									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+										<GradientStop Color="#795B29" Offset="0"/>
+										<GradientStop Color="#C7A96D" Offset="1"/>
+									</LinearGradientBrush>
+								</Setter.Value>
+							</Setter>
+							<Setter Property="Background" TargetName="Border">
+								<Setter.Value>
+									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+										<GradientStop Color="Transparent" Offset="0"/>
+										<GradientStop Color="#20C89B3F" Offset="1"/>
+									</LinearGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="Text" Value=""/>
+								<Condition Property="IsFocused" Value="False"/>
+							</MultiTrigger.Conditions>
+							<Setter Property="Visibility" Value="Hidden" TargetName="PART_ContentHost"/>
+							<Setter Property="Visibility" Value="Visible" TargetName="TextPlaceHolder"/>
+						</MultiTrigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>

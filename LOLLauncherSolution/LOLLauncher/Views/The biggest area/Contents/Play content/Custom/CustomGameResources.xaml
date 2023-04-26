@@ -1,0 +1,292 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:helpers="clr-namespace:LOLLauncher.Helpers"
+					xmlns:converters="clr-namespace:LOLLauncher.Converters">
+
+	<converters:BoolToVisibleHiddenConverter x:Key="BoolToVisibleHiddenConverter"/>
+	
+	<!-- Стиль кнопок сортировки списка лобби. -->
+	<Style TargetType="Button" x:Key="LobbiesSortingButtonStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="MinWidth" Value="20"/>
+		<Setter Property="MinHeight" Value="20"/>
+		<Setter Property="Foreground" Value="#CDBE91"/>
+		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Border BorderBrush="Transparent" BorderThickness="1">
+						<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Background="Transparent">
+							<ContentPresenter VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+							<Grid Width="Auto" VerticalAlignment="Center">
+								<Path Width="9" Height="9" Margin="11 0 0 0" Stroke="#CDBE91" StrokeThickness="1" Fill="#CDBE91"
+									  Data="M 0,8 4,0 8,8 Z" Visibility="Collapsed" x:Name="AscendingSymbol"/>
+								<Path Width="9" Height="9" Margin="11 0 0 0" Stroke="#CDBE91" StrokeThickness="1" Fill="#CDBE91"
+									  Data="M 0,0 4,8 8,0 Z" Visibility="Collapsed" x:Name="DescendingSymbol"/>
+							</Grid>
+						</StackPanel>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="helpers:ButtonsHelper.SortDirection" Value="Ascending">
+							<Setter Property="Visibility" Value="Visible" TargetName="AscendingSymbol"/>
+						</Trigger>
+						<Trigger Property="helpers:ButtonsHelper.SortDirection" Value="Descending">
+							<Setter Property="Visibility" Value="Visible" TargetName="DescendingSymbol"/>
+						</Trigger>
+						<Trigger Property="IsFocused" Value="True">
+							<Setter Property="Foreground" Value="#F0E6D2"/>
+							<Setter Property="Stroke" Value="#F0E6D2" TargetName="AscendingSymbol"/>
+							<Setter Property="Fill" Value="#F0E6D2" TargetName="AscendingSymbol"/>
+							<Setter Property="Stroke" Value="#F0E6D2" TargetName="DescendingSymbol"/>
+							<Setter Property="Fill" Value="#F0E6D2" TargetName="DescendingSymbol"/>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Cursor" Value="Hand"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Стиль для иконки числа игроков. -->
+	<Style TargetType="ContentControl" x:Key="IconPlayersCountStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Path Width="22" Height="22" Stroke="#A09B8C" StrokeThickness="1" Fill="#A09B8C">
+						<Path.Data>
+							<GeometryGroup FillRule="Nonzero">
+								<PathGeometry Figures="M 21,17 A 3,3 0 0,0 15,17 Z"/>
+								<PathGeometry Figures="M 6,17 A 3,3 0 0,0 0,17 Z"/>
+								<PathGeometry Figures="M 15,17 A 4,4 0 0,0 6,17 Z"/>
+								<EllipseGeometry RadiusX="2" RadiusY="2" Center="18,9"/>
+								<EllipseGeometry RadiusX="2" RadiusY="2" Center="3,9"/>
+								<EllipseGeometry RadiusX="3" RadiusY="3" Center="10.5,7"/>
+							</GeometryGroup>
+						</Path.Data>
+					</Path>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Стиль для иконки наблюдателей. -->
+	<Style TargetType="ContentControl" x:Key="IconSpectatorsStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Path Width="22" Height="22" Stroke="#A09B8C" StrokeThickness="1" Fill="#A09B8C">
+						<Path.Data>
+							<CombinedGeometry GeometryCombineMode="Exclude">
+								<CombinedGeometry.Geometry1>
+									<PathGeometry Figures="M 21,10 C 14,2 7,2 0,10 L 0,11 C 7,19 14,19 21,11 Z"/>
+								</CombinedGeometry.Geometry1>
+								<CombinedGeometry.Geometry2>
+									<CombinedGeometry GeometryCombineMode="Exclude">
+										<CombinedGeometry.Geometry1>
+											<EllipseGeometry RadiusX="5.5" RadiusY="5.5" Center="10.5,10.5"/>
+										</CombinedGeometry.Geometry1>
+										<CombinedGeometry.Geometry2>
+											<EllipseGeometry RadiusX="3" RadiusY="3" Center="13.5,7.5"/>
+										</CombinedGeometry.Geometry2>
+									</CombinedGeometry>
+								</CombinedGeometry.Geometry2>
+							</CombinedGeometry>
+						</Path.Data>
+					</Path>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Стиль для иконки закрытого лобби. -->
+	<Style TargetType="ContentControl" x:Key="IconClosedLobbyStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Path Width="21" Height="21" Stroke="#A09B8C" StrokeThickness="1" Fill="#A09B8C">
+						<Path.Data>
+							<GeometryGroup>
+								<CombinedGeometry GeometryCombineMode="Exclude">
+									<CombinedGeometry.Geometry1>
+										<PathGeometry Figures="M 14,8 14,4 A 4,4 0 1,0 6,4 L 6,8"/>
+									</CombinedGeometry.Geometry1>
+									<CombinedGeometry.Geometry2>
+										<PathGeometry Figures="M 13,8 13,4 A 3,3 0 1,0 7,4 L 7,8"/>
+									</CombinedGeometry.Geometry2>
+								</CombinedGeometry>
+								<CombinedGeometry GeometryCombineMode="Exclude">
+									<CombinedGeometry.Geometry1>
+										<PathGeometry Figures="M 16,8 4,8 4,16 10,20 16,16 Z"/>
+									</CombinedGeometry.Geometry1>
+									<CombinedGeometry.Geometry2>
+										<PathGeometry Figures="M 12,15 A 3,3 0 1,0 8,15 L 8,16 A 1,1 0 1,0 12,16 Z"/>
+									</CombinedGeometry.Geometry2>
+								</CombinedGeometry>
+							</GeometryGroup>
+						</Path.Data>
+					</Path>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<!-- Стиль списка лобби. -->
+	<Style TargetType="ListBox" x:Key="LobbiesListStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBox">
+					<Border BorderBrush="Transparent" BorderThickness="1">
+						<ScrollViewer Style="{DynamicResource ScrollViewerStyle}">
+							<StackPanel IsItemsHost="True"/>
+						</ScrollViewer>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemContainerStyle" Value="{DynamicResource LobbiesListItemStyle}"/>
+	</Style>
+
+	<Style TargetType="ListBoxItem" x:Key="LobbiesListItemStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="FontSize" Value="17"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Foreground" Value="#A09B8C"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBoxItem">
+					<Grid>
+						<Border BorderBrush="Transparent" BorderThickness="5 1 1 1" Background="Transparent" x:Name="Border"/>
+						<ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+					</Grid>
+					
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Cursor" Value="Hand"/>
+							<Setter Property="Foreground" Value="#F0E6D2"/>
+							<Setter Property="BorderBrush" TargetName="Border">
+								<Setter.Value>
+									<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+										<GradientStop Color="#785A28" Offset="0"/>
+										<GradientStop Color="Transparent" Offset="1"/>
+									</LinearGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ContentTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<Grid Height="40">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="32"/>
+							<ColumnDefinition Width="416"/>
+							<ColumnDefinition Width="342"/>
+							<ColumnDefinition Width="248"/>
+							<ColumnDefinition Width="92"/>
+							<ColumnDefinition Width="92"/>
+						</Grid.ColumnDefinitions>
+
+						<ContentControl Grid.Column="0" Style="{DynamicResource IconClosedLobbyStyle}" Visibility="Hidden" x:Name="IconClosedLobby"/>
+						<TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
+						<TextBlock Grid.Column="2" Text="{Binding OwnerName}" VerticalAlignment="Center"/>
+						<TextBlock Grid.Column="3" Text="{Binding Map}" VerticalAlignment="Center"/>
+						<StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+							<TextBlock Text="{Binding CurrentPlayersAmount}"/>
+							<TextBlock Text="/"/>
+							<TextBlock Text="{Binding PlayersCapacity}"/>
+						</StackPanel>
+						<StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+							<TextBlock Text="-"/>
+						</StackPanel>
+					</Grid>
+
+					<DataTemplate.Triggers>
+						<DataTrigger Binding="{Binding IsClosed}" Value="true">
+							<Setter Property="Visibility" Value="Visible" TargetName="IconClosedLobby"/>
+						</DataTrigger>
+					</DataTemplate.Triggers>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<Style TargetType="ScrollViewer" x:Key="ScrollViewerStyle">
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ScrollViewer">
+					<Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="13"/>
+							</Grid.ColumnDefinitions>
+
+							<ScrollContentPresenter Grid.Column="0" CanContentScroll="{TemplateBinding CanContentScroll}"/>
+
+							<ScrollBar Grid.Column="1" x:Name="PART_VerticalScrollBar"
+									   Minimum="0" Maximum="{TemplateBinding ScrollableHeight}"
+									   Value="{TemplateBinding VerticalOffset}"
+									   ViewportSize="{TemplateBinding ViewportHeight}"
+									   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+								<ScrollBar.Style>
+									<Style TargetType="ScrollBar">
+										<Setter Property="OverridesDefaultStyle" Value="True"/>
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="ScrollBar">
+													<Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+														<Track IsDirectionReversed="True">
+															<Track.Thumb>
+																<Thumb>
+																	<Thumb.Style>
+																		<Style TargetType="Thumb">
+																			<Setter Property="IsTabStop" Value="False"/>
+																			<Setter Property="Focusable" Value="False"/>
+																			<Setter Property="Template">
+																				<Setter.Value>
+																					<ControlTemplate>
+																						<Rectangle Width="7" Height="{TemplateBinding Height}"
+																								   RadiusX="2" RadiusY="2"
+																								   Fill="#785A28"/>
+																					</ControlTemplate>
+																				</Setter.Value>
+																			</Setter>
+																		</Style>
+																	</Thumb.Style>
+																</Thumb>
+															</Track.Thumb>
+														</Track>
+													</Border>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</ScrollBar.Style>
+							</ScrollBar>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

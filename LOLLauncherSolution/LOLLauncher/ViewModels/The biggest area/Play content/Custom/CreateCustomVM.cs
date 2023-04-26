@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace LOLLauncher.ViewModels.The_biggest_area.Play_content.CreateCustom
+namespace LOLLauncher.ViewModels.The_biggest_area.Play_content.Custom
 {
 	/// <summary>
 	/// VM-компонент PVP игры.
@@ -37,32 +37,6 @@ namespace LOLLauncher.ViewModels.The_biggest_area.Play_content.CreateCustom
 			/// Выбор для турнира.
 			/// </summary>
 			Tournament,
-		}
-
-		/// <summary>
-		/// Разрешение наблюдателей.
-		/// </summary>
-		public enum SpectatorsAllowment
-		{
-			/// <summary>
-			/// Нет.
-			/// </summary>
-			None,
-
-			/// <summary>
-			/// Только друзья.
-			/// </summary>
-			FriendsOnly,
-
-			/// <summary>
-			/// Лобби.
-			/// </summary>
-			Lobby,
-
-			/// <summary>
-			/// Все.
-			/// </summary>
-			All,
 		}
 
 		/// <summary>
