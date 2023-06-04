@@ -140,10 +140,10 @@
 											<!-- Blue circle -->
 											<Ellipse Width="39" Height="39" StrokeThickness="2" Stroke="#CC0695A9" x:Name="IconEllipse">
 												<Ellipse.Fill>
-													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-														<GradientStop Color="Transparent" Offset="0"/>
+													<RadialGradientBrush GradientOrigin="0.5,0.35" Center="0.5,0.35" RadiusX="0.5" RadiusY="0.5">
+														<GradientStop Color="#00000000" Offset="0.15"/>
 														<GradientStop Color="#17D1E6" Offset="1"/>
-													</LinearGradientBrush>
+													</RadialGradientBrush>
 												</Ellipse.Fill>
 											</Ellipse>
 										</Grid>
